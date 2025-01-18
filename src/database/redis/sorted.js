@@ -327,12 +327,11 @@ module.exports = function (module) {
 				const value = data[i];
 				if (!seen[value]) {
 					seen[value] = 1;
-
+                    const pushValue = value
 					if (params.withScores) {
-						returnData.push({ value: value, score: parseFloat(data[i + 1]) });
-					} else {
-						returnData.push(value);
-					}
+						pushValue = { value: value, score: parseFloat(data[i + 1]) };
+					} 
+                    returnData.push(pushValue);
 					if (params.limit && returnData.length >= params.limit) {
 						done = true;
 						break;
